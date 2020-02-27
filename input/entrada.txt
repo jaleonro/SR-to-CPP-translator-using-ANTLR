@@ -1,0 +1,42 @@
+resource do8()
+	const N:int;
+	var a,b,c:int;
+	var g[N,N], h[N,N], l[N,N]: real;
+	a := 1;
+	b := 2;
+	c := 0;
+	d := -3;
+	fa i:= 1 to 3, j := 2 to 4, k := 2 to 4   ->
+		a[i,j] := 100*i+j
+	af;
+	if (a = 10) ->    # cannot open file
+		c := 1+b;
+	[]else->
+		 c := 2*5-(a+b);
+	 fi;
+	write(a); write(b); write(c);write(d);
+	e := abs(d);
+	do (a != 10) ->
+		b := a mod e;
+		do b != 10 ->
+			c++;
+			b++;
+			write(a); write(b); write(c);write(e);
+		od;
+		a++;
+		e++;
+		write(a); write(b); write(c);write(e);
+	od;
+	a :=: c;
+	write(a); write(b); write(c);write(e);
+end
+global sizes
+	var N := 10; # matrix dimension, default 10
+	var PR := 2; # number of processes, default 2
+	var S: int; # strip size
+	body sizes
+	getarg(1, N); getarg(2, PR); S := N/PR;
+	if N - PR != 0 ->
+		write("N must be a multiple of PR"); 
+	fi
+end
